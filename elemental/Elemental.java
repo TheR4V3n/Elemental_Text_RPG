@@ -1,23 +1,14 @@
 package elemental;
 
-import elements.Element;
+import types.*;
 
 public class Elemental {
 	
 	private String elementalName;
-	private Element[] elements;
+	private Element element;
+	private Creature creature;
 	private int maxHealth, maxAttack, maxDefense;
 	private int curHealth, curAttack, curDefense;
-	
-	/*
-	 * Constructor
-	 */
-	
-	public Elemental(String name, Element[] elements, int health, int attack, int defense) {
-		setElementalName(name);
-		setElements(elements);
-		setStats(health, attack, defense);
-	}
 	
 	/*
 	 * Setters
@@ -28,9 +19,14 @@ public class Elemental {
 		elementalName = name;
  	}
 	
-	//Sets Elemental's elements
-	public void setElements(Element[] Elements) {
-		elements = Elements;
+	//Sets Elemental's Elements and Element ID
+	public void setElement(Element Element) {
+		element = Element;
+	}
+	
+	//Sets Creature type and Creature ID
+	public void setCreature(Creature Creature) {
+		creature = Creature;
 	}
 	
 	//Sets the Elemental's base stats
@@ -68,8 +64,23 @@ public class Elemental {
 	}
 	
 	//Get Elemental's elements
-	public Element[] getElements() {
-		return elements;
+	public Element getElement() {
+		return element;
+	}
+	
+	//Get Element ID
+	public int getElementID() {
+		return element.getElementID();
+	}
+	
+	//Get Elemental's Creature type
+	public Creature getCreature() {
+		return creature;
+	}
+	
+	//Get Creature ID
+	public int getCreatureID() {
+		return creature.getCreatureID();
 	}
 	
 	//Returns max health of the Elemental
@@ -100,6 +111,17 @@ public class Elemental {
 	//Returns current defense of the Elemental
 	public int getCurDefense() {
 		return curDefense;
+	}
+	
+	/*
+	 * Constructor
+	 */
+	
+	public Elemental(String name, Element element, Creature creature, int elementID, int health, int attack, int defense) {
+		setElementalName(name);
+		setElement(element);
+		setCreature(creature);
+		setStats(health, attack, defense);
 	}
 	
 }
