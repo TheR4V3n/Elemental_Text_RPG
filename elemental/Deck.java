@@ -6,20 +6,14 @@ public class Deck {
 	
 	private Element Placeholder = new Element("asdf");
 	private Creature PlaceHolder = new Creature("sdfaad");
-	private Elemental placeHolder = new Elemental("Placeholder", null, null, 1, 1, 1, 1);
-	private Elemental[] elementalDeck;
+	private Elemental placeHolder = new Elemental("Placeholder", Placeholder, PlaceHolder, 1, 1, 1, 1);
+	private Elemental[] elementalDeck = new Elemental[3];
 	private Elemental[] elementalChest;
 	
-	elementalDeck[0] = placeholder;
-	
 	//Adds an Elemental to the next empty space in the Deck
-	public void addToDeck(Elemental addedElemental) {
-		if(getDeckLength() >= 0) {
-			elementalDeck[getDeckLength()] = addedElemental;
-		}
-		else {
-			elementalDeck[0] = addedElemental;
-		}
+	public void addToDeck(Elemental[] addedElementals) {
+		//Expands Elemental deck by 1
+		System.arraycopy(addedElementals, 0, elementalDeck, 0, addedElementals.length);
 	}
 	
 	//Adds an Elemental to the next empty space in the Chest
@@ -77,6 +71,18 @@ public class Deck {
 		return null;
 	}
 	
+	//Prints names of Elementals in deck
+	public void printDeckContents() {
+		int i;
+		int k = getDeckLength();
+		System.out.println(k);
+		for(Elemental card : elementalDeck) {
+			System.out.println(card.getElementalName());
+		}
+	}
+	
+	
+	
 	//Basic bubble sort sorts Deck ONLY according to element ID
 	public void sortDeck() {
 		//Denotes when sorting has been complete 
@@ -88,19 +94,21 @@ public class Deck {
 		
 		//Holds the first Elemental object so it is not lost during the switch
 		Elemental placeholder;
-		while(isSorted == false) {
-			switchOccur = false;
-			for(i=0;i==(getDeckLength()-1);i++) {
-				if(elementalDeck[i].getElementID()>elementalDeck[i+1].getElementID()) {
-					placeholder = elementalDeck[i];
-					elementalDeck[i] = elementalDeck[i+1];
-					elementalDeck[i+1] = placeholder;
-					switchOccur = true;
-				}
-			}
+		if(getDeckLength() > 1) {
+			while(isSorted == false) {
+				switchOccur = false;
+				for(i=0;i==(getDeckLength()-1);i++) {
+					if(elementalDeck[i].getElementID() > elementalDeck[i+1].getElementID()) {
+						placeholder = elementalDeck[i];
+						elementalDeck[i] = elementalDeck[i+1];
+						elementalDeck[i+1] = placeholder;
+						switchOccur = true;
+					}
+				}	
 			//If no switch occurred in the iteration of the for loop, the sort is complete 
-			if (switchOccur == false) {
-				isSorted = true;
+				if (switchOccur == false) {
+					isSorted = true;
+				}
 			}
 		}
 	}
