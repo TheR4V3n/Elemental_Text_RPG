@@ -1,52 +1,32 @@
 package combat;
 
-import java.util.Scanner;
-
-import characters.*;
+import types.Creature;
+import types.Element;
+import characters.Player;
+import characters.Enemy;
 import elemental.Elemental;
 
 public class Combat {
 	
-	static Scanner scan = new Scanner(System.in);
-	static String placeholder;
+	static Element earth = new Element("Earth", 0);
+	static Creature pixie = new Creature("Pixie", 0);
+	static Elemental elemental = new Elemental("zhkdfah", earth, pixie, 1, 1, 1);
 	
-	public static void beginCombat(Player player, Enemy enemy) {
-		System.out.println("You are suddenly challenged to a Elemental Match by " + enemy.getCharacterName());
-		
-		placeholder = scan.next();
-		
-		printBattleStats(player, enemy);
-	}
+	public static Player player = new Player("Fred");
+	public static Enemy enemy = new Enemy("Steve");
 	
-	public void turnChoices(Player player, Enemy enemy) {
-		printBattleStats(player, enemy);
-	}
-	
-	//Prints Stats of both Enemy and Player
-	public static void printBattleStats(Player player, Enemy enemy) {
-		Elemental playerElemental = player.getActiveElemental();
+	public static String printEnemyStats() {
+		enemy.setActiveElemental(elemental);
 		Elemental enemyElemental = enemy.getActiveElemental();
-		
-		//Prints Enemy stats
-		System.out.println(enemy.getCharacterName());
-		System.out.println("Life " + enemy.getCurHealth());
-		System.out.println();
-		System.out.println(enemyElemental.getElementalName());
-		System.out.println("Health  " + enemyElemental.getCurHealth());
-		System.out.println("Attack  " + enemyElemental.getCurAttack());
-		System.out.println("Defense " + enemyElemental.getCurDefense());
-		
-		System.out.println();
-		System.out.println();
-		
-		//Prints Player Stats
-		System.out.println(player.getCharacterName());
-		System.out.println("Life " + player.getCurHealth());
-		System.out.println();
-		System.out.println(playerElemental.getElementalName());
-		System.out.println("Health  " + playerElemental.getCurHealth());
-		System.out.println("Attack  " + playerElemental.getCurAttack());
-		System.out.println("Defense " + playerElemental.getCurDefense());
+		String text = enemy.getCharacterName() + "\nLife " + enemy.getCurHealth() + "\n\n" + enemyElemental.getElementalName() + "\nHealth  " + enemyElemental.getCurHealth() + "\nAttack  " + enemyElemental.getCurAttack() + "\nDefense " + enemyElemental.getCurDefense();
+		return text;
+	}
+	
+	public static String printPlayerStats() {
+		player.setActiveElemental(elemental);
+		Elemental playerElemental = player.getActiveElemental();
+		String text = player.getCharacterName() + "\nLife " + player.getCurHealth() + "\n\n" + playerElemental.getElementalName() + "\nHealth  " + playerElemental.getCurHealth() + "\nAttack  " + playerElemental.getCurAttack() + "\nDefense " + playerElemental.getCurDefense() + "\n";
+		return text;
 	}
 	
 }

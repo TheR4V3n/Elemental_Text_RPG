@@ -9,7 +9,7 @@ public class Element extends Type{
 	 */
 	
 	/*
-	 * Sets the element ID for each element:
+	 * Element IDs:
 	 *    0 = "Earth"
 	 *    1 = "Fire"
 	 *    2 = "Air"
@@ -18,17 +18,6 @@ public class Element extends Type{
 	 *    5 = "Creation"
 	 */
 
-	public int setElementID(String typeName) {
-		int i;
-		String[] typeNames = {"Earth", "Fire", "Air", "Water", "Annihilation", "Creation"};
-		for(i=0;i==5;i++) {
-			if(typeNames[i]==typeName) {
-				return i;
-			}
-		}
-		return 6;
-	}
-	
 	//Set weaknesses and strengths for each element
 	public void setCombatModifiers(int typeID) {
 		switch (typeID) {
@@ -70,9 +59,9 @@ public class Element extends Type{
 	 * Constructor
 	 */
 	
-	public Element(String typeName) {
+	public Element(String typeName, int ID) {
 		setTypeName(typeName);
-		setElementID(typeName);
+		elementID = ID;
 		setCombatModifiers(elementID);
 	}
 }

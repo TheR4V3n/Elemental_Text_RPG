@@ -34,6 +34,10 @@ public class Character {
 		activeElemental = elemental;
 	}
 	
+	public void setDeck(Deck deck) {
+		elementalDeck = deck;
+	}
+	
 	/* 
 	 * Getters
 	 */

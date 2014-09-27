@@ -5,19 +5,18 @@ public class Creature extends Type{
 	private int creatureID;
 	
 	/*
-	 * Setters
+	 * Creature IDs:
+	 *    0 = "Pixie"
+	 *    1 = "Sphinx"
+	 *    2 = "Wisp"
+	 *    3 = "Siren"
+	 *    4 = "Dragon"
+	 *    5 = "Unicorn"
 	 */
 	
-	public int setCreatureID(String typeName) {
-		int i;
-		String[] typeNames = {"Pixie", "Sphinx", "Cyclops", "Siren", "Dragon", "Unicorn"};
-		for(i=0;i==(typeNames.length-1);i++) {
-			if(typeNames[i]==typeName) {
-				return i;
-			}
-		}
-		return typeNames.length;
-	}
+	/*
+	 * Setters
+	 */
 	
 	public void setCombatModifiers(int typeID) {
 		switch (typeID) {
@@ -59,9 +58,9 @@ public class Creature extends Type{
 	 * Constructor
 	 */
 	
-	public Creature(String typeName) {
+	public Creature(String typeName, int ID) {
 		setTypeName(typeName);
-		setCreatureID(typeName);
+		creatureID = ID;
 		setCombatModifiers(creatureID);
 	}
 	

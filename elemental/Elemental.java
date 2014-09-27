@@ -7,8 +7,20 @@ public class Elemental {
 	private String elementalName;
 	private Element element;
 	private Creature creature;
+	private Title title;
+	private Attack[] attacks = new Attack[2];
 	private int maxHealth, maxAttack, maxDefense;
 	private int curHealth, curAttack, curDefense;
+	
+	/*
+	 * Element IDs:
+	 *    0 = "Earth"
+	 *    1 = "Fire"
+	 *    2 = "Air"
+	 *    3 = "Water"
+	 *    4 = "Annihilation"
+	 *    5 = "Creation"
+	 */
 	
 	/*
 	 * Setters
@@ -27,6 +39,11 @@ public class Elemental {
 	//Sets Creature type and Creature ID
 	public void setCreature(Creature Creature) {
 		creature = Creature;
+	}
+	
+	//Sets Title and Title ID
+	public void setTitle(Title Title) {
+		title = Title;
 	}
 	
 	//Sets the Elemental's base stats
@@ -52,6 +69,11 @@ public class Elemental {
 	//Increases/Decreases Elemental's current defense
 	public void setCurDefense(int modifier) {
 		curDefense = curDefense + modifier;
+	}
+	
+	public void setAttacks() {
+		attacks[0] = new Attack(getElementID());
+		attacks[1] = new Attack(getCreatureID() + 6);
 	}
 	
 	/*
@@ -81,6 +103,20 @@ public class Elemental {
 	//Get Creature ID
 	public int getCreatureID() {
 		return creature.getCreatureID();
+	}
+	
+	//Get Elemental's Title
+	public Title getTitle() {
+		return title;
+	}
+	//Get Title ID
+	public int getTitleID() {
+		return title.getTitleID();
+	}
+	
+	//Gets chosen Attack from attacks[]
+	public Attack getAttack(int cellID) {
+		return attacks[cellID];
 	}
 	
 	//Returns max health of the Elemental
@@ -117,11 +153,12 @@ public class Elemental {
 	 * Constructor
 	 */
 	
-	public Elemental(String name, Element element, Creature creature, int elementID, int health, int attack, int defense) {
+	public Elemental(String name, Element element, Creature creature, int health, int attack, int defense) {
 		setElementalName(name);
 		setElement(element);
 		setCreature(creature);
 		setStats(health, attack, defense);
+		setAttacks();
 	}
 	
 }

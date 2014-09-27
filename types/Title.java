@@ -1,5 +1,7 @@
 package types;
 
+//TODO Make titles do stuff
+
 public class Title extends Type{
 
 	private int titleID;
@@ -8,15 +10,21 @@ public class Title extends Type{
 	 * Setters
 	 */
 	
-	public int setTitleID(String typeName) {
-		int i;
-		String[] typeNames = {"Ditzy", "Cryptic", "The Seer of Fates", "Flirtatous", "King of the Mountain", "Avenger of Injustice"};
-		for(i=0;i==(typeNames.length-1);i++) {
-			if(typeNames[i]==typeName) {
-				return i;
-			}
+	public void setTypeName(int titleID) {
+		switch (titleID) {
+		case 0: typeName = "The Ditzy ";
+				break;
+		case 1: typeName = "Cryptic";
+				break;
+		case 2: typeName = "The Seer of Fates";
+				break;
+		case 3: typeName = "Flirtatous";
+				break;
+		case 4: typeName = "King of the Mountain";
+				break;
+		case 5: typeName = "Avenger of Injustice";
+				break;
 		}
-		return typeNames.length;
 	}
 	
 	/*
@@ -26,4 +34,10 @@ public class Title extends Type{
 	public int getTitleID() {
 		return titleID;
 	}
+	
+	public Title(int TitleID) {
+		setTypeName(TitleID);
+		titleID = TitleID;
+	}
+	
 }

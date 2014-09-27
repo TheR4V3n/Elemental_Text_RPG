@@ -4,9 +4,9 @@ import types.*;
 
 public class Deck {
 	
-	private Element Placeholder = new Element("asdf");
-	private Creature PlaceHolder = new Creature("sdfaad");
-	private Elemental placeHolder = new Elemental("Placeholder", Placeholder, PlaceHolder, 1, 1, 1, 1);
+	private Element Placeholder = new Element("asdf", 6);
+	private Creature PlaceHolder = new Creature("sdfaad", 6);
+	private Elemental placeHolder = new Elemental("Placeholder", Placeholder, PlaceHolder, 1, 1, 1);
 	private Elemental[] elementalDeck = new Elemental[3];
 	private Elemental[] elementalChest;
 	
@@ -48,14 +48,14 @@ public class Deck {
 	//Searches Elemental Deck for Elemental with desired name, if none match name returns null
 	public Elemental getDeckElemental(String elementalName) {
 		int i;
-		for(i=0;i==(getDeckLength()-1);i++) {
-			if(elementalDeck[i].getElementalName() == elementalName) {
+		for(i=0;i<getDeckLength();i++) {
+			if(elementalDeck[i].getElementalName().equals(elementalName)) {
 				return elementalDeck[i];
 			}
 			else {	
 			}
 		}
-		return null;
+		return placeHolder;
 	}
 	
 	//Searches Elemental Chest for Elemental with desired name, if none match name returns null
@@ -73,15 +73,10 @@ public class Deck {
 	
 	//Prints names of Elementals in deck
 	public void printDeckContents() {
-		int i;
-		int k = getDeckLength();
-		System.out.println(k);
 		for(Elemental card : elementalDeck) {
 			System.out.println(card.getElementalName());
 		}
 	}
-	
-	
 	
 	//Basic bubble sort sorts Deck ONLY according to element ID
 	public void sortDeck() {
@@ -97,7 +92,7 @@ public class Deck {
 		if(getDeckLength() > 1) {
 			while(isSorted == false) {
 				switchOccur = false;
-				for(i=0;i==(getDeckLength()-1);i++) {
+				for(i=0;i<(getDeckLength()-1);i++) {
 					if(elementalDeck[i].getElementID() > elementalDeck[i+1].getElementID()) {
 						placeholder = elementalDeck[i];
 						elementalDeck[i] = elementalDeck[i+1];

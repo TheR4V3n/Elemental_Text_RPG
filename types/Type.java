@@ -2,7 +2,7 @@ package types;
 
 public class Type {
 	
-	String typeName;
+	public String typeName;
 	int weakAgainst, strongAgainst;
 	
 	/*
